@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+{{ if .Site.Params.debug }}
+<pre>Debug Etienne :je suis dans layouts\baseof.html</pre>
+{{ end }}
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <header>
+  {{ partial "header2grid.html" . }}
+  </header>
+  <main>
+    {{ block "main" . }}
+      This will be replaced with content from the 
+      corresponding "define" action found in the template
+      to which this base template is applied.
+    {{ end }}
+  </main>
+  <footer>
+    {{ partial "footer.html" . }}
+  </footer>
+  <script src="/js/script.js"></script>
+</body>
+</html>

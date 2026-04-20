@@ -1,0 +1,46 @@
+<pre>Debug Etienne :je suis dans layouts\_shortcodes\grid.html</pre>
+<style>
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  gap: 4px;
+  padding: 4px;
+  border: 5px dashed hsl(345, 85%, 13%);
+  border-radius: 4px;
+
+  grid-auto-flow: row dense;
+}
+.child {
+  display: grid;
+  place-content: center;
+  background: hsl(210, 56%, 50%);
+  border-radius: 2px;
+  color: white;
+  font-weight: bold;
+}
+.featured.child {
+  background: hsl(50deg 100% 50%);
+  color: black;
+
+  grid-column: span 2;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  background: hsl(210deg 15% 6%);
+}
+</style>
+
+
+<div class="grid">
+  <div class="child">Enfant1</div>
+  <div class="child">Enfant2</div>
+  <div class="child">Enfant3</div>
+  <div class="featured child">Enfant4 s'étend sur 2 colonnes(span 2)</div>
+  <div class="child">Enfant5</div>
+  <div class="child">Enfant6</div>
+</div>

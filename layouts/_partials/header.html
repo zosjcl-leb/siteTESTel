@@ -1,0 +1,45 @@
+ {{ if .Site.Params.debug }}
+ <pre>Debug Etienne :je suis dans layouts\_partials\header.html</pre> 
+  {{ end }}
+
+
+  {{/* commentaires 
+      {{ with site.GetPage "/" }} Renvoie un objet Page à partir du chemin spécifié. en l occurrence
+                                   la page _index.md du repertoire content
+                                   ainsi {{ .Title }} sera toujours "galleriesdeluxe" quelquesoit 
+                                   la page traitée(home.html,section.html,page.html...)
+  */}} 
+ 
+  {{ with site.GetPage "/" }}
+    <h1> {{ .Title }} </h1> 
+  {{ end }}
+
+
+  
+{{/* commentaires enlever {{ if .IsHome  {{ end }} }} 
+sinon  les liens n 'apparaisent pas dans les pages de listes de photos '
+*/}}
+ 
+    {{ $pages := slice (site.GetPage "posts") }}
+     {{ with site.GetPage "/" }}
+       {{ $pages = $pages | append . }}
+     {{ end }}
+
+     {{ if .Site.Params.debug }}
+      <pre>Debug Etienne variable $pages {{ $pages | jsonify (dict "indent" "  ") }} </pre>
+     {{ end }}
+  <nav>
+   <ul role="list" class="topnav">
+  
+    {{ range $pages }}
+      <li>
+        {{ if .Site.Params.debug }}
+        <pre>Debug Etienne contexte . {{ . | jsonify (dict "indent" "  ") }} </pre>
+        {{ end }}
+        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+      </li>
+    {{ end }}
+   </ul>
+  </nav>
+ 
+

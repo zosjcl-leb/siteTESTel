@@ -1,0 +1,89 @@
+ {{ if .Site.Params.debug }}
+ <pre>Debug Etienne :je suis dans layouts\_partials\header2grid.html</pre> 
+  {{ end }}
+
+
+  {{/* commentaires 
+      {{ with site.GetPage "/galleries" }} Renvoie un objet Page à partir du chemin spécifié. en l occurrence
+                                   la page _index.md du repertoire content/galleries
+                                   ainsi {{ .Title }} sera toujours "galleriesdeluxe" quelquesoit 
+                                   la page traitée(home.html,section.html,page.html...)
+  */}} 
+ {{ $titre := "" }}
+  {{ with site.GetPage "/galleries" }} 
+  
+     {{ $titre = .Title }}      {{/* commentaires Attention $titre = .Title et non $titre := .Title (nouvelle variable Stitre) 
+                                     sinon $titre n est pas mis à jour en dehors du with*/}} 
+     
+  {{ end }}
+
+  <div class="container">
+   <div class="item1">
+    <img src="/galleries/g2/Vitrail2_MarcLion.jpg" alt="Ma Photo" class="photo">
+    <span class="caption">MARCUS et le LION.</span>
+   </div>
+   <div class="item2">
+    <h2>{{ $titre  }} </h2>
+    
+   </div>
+   <div class="item3">
+    <iframe src="https://free.timeanddate.com/clock/iadp8ft1/n335/tlfr2/fn6/fs16/fcfff/tc90f/ftb/tt0/td2/th1/ta1/tb4" frameborder="0" width="233" height="42"></iframe>
+
+   <div>
+      <a href="https://logwork.com/current-time-in-brest-france-bretagne" class="clock-time" data-style="violetv4"
+        data-size="250" data-timezone="Europe/Paris">heure de Saint-Malo, France</a>
+    </div>
+    <div>
+      <iframe scrolling="no" frameborder="no" clocktype="html5"
+        style="overflow:hidden;border:0;margin:0;padding:0;width:250px;height:250px;"
+        src="https://www.clocklink.com/html5embed.php?clock=014&timezone=France_Paris&color=silver&size=250&Title=&Message=&Target=&From=2026,1,1,0,0,0&Color=silver"></iframe>
+    </div>
+   </div>
+  
+      
+{{/* commentaires enlever {{ if .IsHome  {{ end }} }} 
+sinon  les liens n 'apparaisent pas dans les pages de listes de photos '
+*/}}
+ 
+    {{ $pages := slice (site.GetPage "posts") }}
+     {{ with site.GetPage "/" }}
+       {{ $pages = $pages | append . }}
+     {{ end }}
+
+     {{ if .Site.Params.debug }}
+      <pre>Debug Etienne variable $pages {{ $pages | jsonify (dict "indent" "  ") }} </pre>
+     {{ end }}
+   <nav class="navbar">
+    
+      
+        <div class="dropdown">
+          <button class="dropbtn">Dropdown
+           <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            {{ range $pages }}
+  
+    {{ if .Site.Params.debug }}
+    <pre>Debug Etienne contexte . {{ . | jsonify (dict "indent" "  ") }} </pre>
+    {{ end }}
+    <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+  
+{{ end }}
+             <a href="#"></a>
+             <a href="#"></a>
+             <a href="#"></a>
+          </div>
+        </div>
+       
+    <ul role="list" >
+    {{ range $pages }}
+      <li>
+        {{ if .Site.Params.debug }}
+        <pre>Debug Etienne contexte . {{ . | jsonify (dict "indent" "  ") }} </pre>
+        {{ end }}
+        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+      </li>
+    {{ end }}
+    </ul>
+   </nav> 
+  </div>

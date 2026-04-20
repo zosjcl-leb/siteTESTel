@@ -1,0 +1,19 @@
+<head>
+    {{ if .Site.Params.debug }}
+     <pre>Debug Etienne :je suis dans layouts\_partials\head.html</pre>
+    {{ end }}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+{{ if .Site.Params.description }}
+<meta name="description" content="{{ .Site.Params.description }}">{{ end }}
+<title>
+    {{ .Title  }}
+</title>
+    <link rel="stylesheet" href="/styles.css"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+        

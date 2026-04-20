@@ -1,0 +1,23 @@
+{{ define "main" }}
+<pre>Debug Etienne :je suis dans \layouts\section.html</pre>
+
+  {{ .Content }}
+         
+
+  {{ range .Page.RegularPages }}
+
+{{ if .Site.Params.debug }}
+ <pre>Debug Etienne contexte . {{ . | jsonify (dict "indent" "  ") }} </pre>
+{{ end }}  
+
+    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+    <div class="summary">
+     {{ .Summary }}
+     {{ if .Truncated }}
+      <a href="{{ .RelPermalink }}">More ...</a>
+     {{ end }}
+    </div>
+  {{ end }}
+{{ end }}
+
+

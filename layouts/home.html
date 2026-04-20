@@ -1,0 +1,87 @@
+{{ define "main" }}
+{{ if .Site.Params.debug }}
+  <pre>Debug Etienne :je suis dans \layouts\home.html</pre>
+  <pre>Debug Etienne Contexte . {{ . | jsonify (dict "indent" "  ") }} </pre>
+{{end}}
+  {{ .Content }}
+  {{ if .Site.Params.debug }}
+   <pre>Debug Etienne Contexte .Content {{ .Content | jsonify (dict "indent" "  ") }} </pre>
+  {{end}}
+
+
+ {{/* commentaires
+  {{ with site.GetPage "galleries" }} donne la page correspondante au  path de galleries
+  {{ $pages = .RegularPagesRecursive }} donne une stucture contenant g1,g2,g3
+ on parcourt g1,g2,g3 avec {{ range $pages }} pour obtenir une photo de chaque groupe, en l occurrence la premiere phpto de chaque groupe
+ avec {{ with .Resources.GetMatch "*.*" }} 
+ */}}
+
+
+  {{ $pages := .Pages }}
+  {{ if .IsHome }}
+     {{ with site.GetPage "galleries" }}
+      {{ $pages = .RegularPagesRecursive }}
+     {{ end }}
+  {{ end }}
+  <div class="galleries-grid"> 
+  {{ range $pages }}
+    {{  $context := . }}
+	    
+        {{ with .Resources.GetMatch "*.*" }} 
+          {{ with .Fit "350x350" }} 
+          <div class="card">
+            <div class="container1">
+             <h2>
+              <a href="{{ $context.RelPermalink }}">{{ $context.LinkTitle }}</a>
+            </h2>
+  {{/* commentaires "div" et pas "p" car $context.summary genere une balise p automatiquement 
+    on se retrouverait avec 2 balises p */}}
+            <div class="paragraph">
+             {{ $context.Summary | safeHTML}}
+            </div>
+            <div>
+  
+              <span class="count">{{ $context.Resources.ByType "image"  | len }} Photos.</span>
+            </div>
+          </div>         
+            <div class = "container2">
+             <a class="card-img" href="{{ $context.RelPermalink }}" >
+              <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="">
+             </a>
+            </div> 
+          </div>
+          
+          
+          
+            {{ end }}
+        {{ end }}
+      
+
+  {{end}}
+  </div>
+
+
+{{end}}
+{{/* commentaires
+ <div class="card">
+   <a class="card-img" href="{{ .page.RelPermalink }}">
+     <img
+       src="{{ .thumb.RelPermalink }}"
+       alt="{{ .thumb.Name }}"
+       class=""
+       width="{{ .thumb.Width }}"
+       height="{{ .thumb.Height }}" />
+     <span class="num-photos"
+       >{{ .images | len }} {{ T "photo" ( .images | len) }}</span
+     >
+   </a>
+   <div class="body">
+     <h2>
+       <a href="{{ .page.RelPermalink }}">{{ .page.LinkTitle }}</a>
+     </h2>
+     <p>
+       {{ .page.Summary }}
+     </p>
+   </div>
+ </div>
+*/}}

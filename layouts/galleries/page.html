@@ -1,0 +1,34 @@
+{{ define "main" }}
+ {{ if .Site.Params.debug }}
+  <pre>Debug Etienne :je suis dans layouts\galleries\page.html</pre>
+ {{ end }}  
+
+<div id="my-gallery" class="thumb-grid">
+    
+      {{ range .Resources.ByType "image" }}
+       <div class = "thumb-grid-container">
+        {{ $full := . }}
+        {{ $thumb := .Fit "400x400" }}
+
+        <a 
+         href="{{ $full.RelPermalink }}"
+         data-pswp-width="{{ $full.Width }}"
+         data-pswp-height="{{ $full.Height }}"
+         >
+          <img 
+            src="{{ $thumb.RelPermalink }}" 
+            width="{{ $thumb.Width }}" 
+            height="{{ $thumb.Height }}"
+            loading="lazy"
+         >
+        </a>
+      </div>
+        {{ end }}
+
+</div>
+
+<!-- Appel du partial PhotoSwipe -->
+{{ partial "photoswipe.html" (dict "galleryID" "#my-gallery") }}
+
+
+{{ end }}

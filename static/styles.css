@@ -1,0 +1,275 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #d1c6f1d0;
+}
+
+
+
+* MAIN LAYOUT */
+
+/* MAIN LAYOUT en commentaires
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-bottom: 5rem;
+  max-width: 140ch;
+}
+*/
+main>* {
+  width: 100%;
+}
+
+/* Galleries Grid  header2grid.html */
+.container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, minmax(350px, 1fr));
+  background-image: url("/galleries/g2/Cycliste_etienne.png");
+  background-size: 50% auto;
+}
+
+
+
+
+.container div {
+  /*   background-color: #f1f1f1; */
+  color: rgb(232 235 85 / 91%);
+  padding: 10px;
+  font-size: 30px;
+  /* text-align: center;*/
+
+
+}
+
+.item1 {
+
+  /*align-self: center; */
+  /*aligne uniquement dans la cellule*/
+  justify-self: center;
+  /*aligne uniquement dans la cellule*/
+}
+
+.item2 {
+
+  justify-self: center;
+}
+
+.item3 {
+  /* align-self: center; */
+  /*aligne uniquement dans la cellule*/
+  justify-self: right;
+  /*aligne uniquement dans la cellule*/
+}
+
+
+.container .item1 {
+  position: relative;
+  overflow: hidden;
+}
+
+.container .item1 img {
+  vertical-align: middle;
+}
+
+.container .caption {
+  margin: 0;
+  padding: 1em;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+  transition: transform 0.5s;
+  transform: translateY(100%);
+  background: rgba(0, 0, 0, 0.7);
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+.container .item1:hover .caption {
+  transform: translateY(0%);
+}
+
+.photo {
+  max-width: 450px;
+  border-radius: 180px;
+  border: 2px solid rgb(88 157 8);
+  ;
+  overflow: hidden;
+  /* Ajustez selon vos besoins */
+  height: auto;
+}
+
+/* NAVIGATION */
+.navbar {
+  grid-column: 1 / span 4;
+
+
+  border: 3px solid rgb(239, 243, 10);
+  background-color: rgb(190, 189, 247);
+  padding-left: 50px;
+  font-size: 3em;
+}
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  float: left;
+  padding: 25px;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+  
+}
+
+.dropdown .dropbtn {
+  font-size: 50px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+
+
+
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+/* Galleries Grid  3 photos qui donnent accès à une galerie  */
+.galleries-grid {
+  display: grid;
+  grid-gap: 30px;
+  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  /*   background-image: url("/galleries/g1/cycliste_etienne.png"); */
+}
+
+.galleries-grid .container1 {
+  min-height: 300px;
+  border:solid 1px rgb(212, 252, 200);
+
+}
+  
+.galleries-grid .container1 .paragraph {
+  min-height: 150px;
+  border:solid 1px rgb(60, 15, 224);
+  font-size: 25px;
+}
+.galleries-grid .container1 .count {
+ height: 70px;
+ border:solid 3px rgb(228, 152, 109);
+ font-size: 25px;
+}
+
+.galleries-grid .container2 {
+  column-height: 400px;
+  border:solid 3px rgb(238, 9, 162);
+}
+
+/* THUMB GRID  page.html*/
+.thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 40px;
+  margin-left: 25px;
+}
+
+/* centrage de la photo dans thumb-grid-container,en colonne et en ligne, grace au 3 elements suivants:
+   display:flex;
+   justify-content: center; 
+   align-items: center */
+.thumb-grid-container {
+  background: rgb(255, 255, 255);
+  ;
+  border-style: ridge;
+  border-color: red;
+  height: 550px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+/* effet ombre sur .thumb-grid img  page.html */
+.thumb-grid img:hover {
+  transform: translateY(-8px);
+  box-shadow: 10px 15px #eff8d4;
+}
+
+
+.thumb-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+
+}
+
+
+/* PHOTOSWIPE FIXES */
+.pswp {
+  z-index: 99999 !important;
+  opacity: 1 !important;
+}
+
+
+.pswp,
+.pswp__img,
+.pswp__item {
+  opacity: 1 !important;
+  background: transparent !important;
+}
+
+.pswp__bg {
+  opacity: 1 !important;
+}
