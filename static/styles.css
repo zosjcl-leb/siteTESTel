@@ -111,9 +111,10 @@ main>* {
 
 /* NAVIGATION */
 .navbar {
-  grid-column: 1 / span 4;
+  
 
-
+  display: flex;
+  flex-wrap: nowrap;
   border: 3px solid rgb(239, 243, 10);
   background-color: rgb(190, 189, 247);
   padding-left: 50px;

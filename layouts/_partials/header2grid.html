@@ -53,37 +53,40 @@ sinon  les liens n 'apparaisent pas dans les pages de listes de photos '
      {{ if .Site.Params.debug }}
       <pre>Debug Etienne variable $pages {{ $pages | jsonify (dict "indent" "  ") }} </pre>
      {{ end }}
-   <nav class="navbar">
-    
-      
-        <div class="dropdown">
-          <button class="dropbtn">Dropdown
-           <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            {{ range $pages }}
-  
-    {{ if .Site.Params.debug }}
-    <pre>Debug Etienne contexte . {{ . | jsonify (dict "indent" "  ") }} </pre>
-    {{ end }}
-    <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-  
-{{ end }}
-             <a href="#"></a>
-             <a href="#"></a>
-             <a href="#"></a>
-          </div>
-        </div>
-       
-    <ul role="list" >
-    {{ range $pages }}
-      <li>
-        {{ if .Site.Params.debug }}
-        <pre>Debug Etienne contexte . {{ . | jsonify (dict "indent" "  ") }} </pre>
-        {{ end }}
-        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-      </li>
-    {{ end }}
-    </ul>
-   </nav> 
   </div>
+
+   <nav class="navbar">
+  
+    
+      <div class="dropdown">
+        <button class="dropbtn">Dropdown
+         <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          {{ range $pages }}
+  
+
+          {{ if .Site.Params.debug }}
+            <pre>Debug Etienne contexte . {{ . | jsonify (dict "indent" "  ") }} </pre>
+          {{ end }}
+            <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+  
+
+          {{ end }}
+           <a href="#"></a>
+           <a href="#"></a>
+           <a href="#"></a>
+        </div>
+      </div>
+     
+  <ul role="list" >
+  {{ range $pages }}
+    <li>
+      {{ if .Site.Params.debug }}
+      <pre>Debug Etienne contexte . {{ . | jsonify (dict "indent" "  ") }} </pre>
+      {{ end }}
+      <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+    </li>
+  {{ end }}
+  </ul>
+ </nav> 
