@@ -30,7 +30,7 @@ main>* {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(3, minmax(350px, 1fr));
-  background-image: url("/galleries/g2/Cycliste_etienne.png");
+  background-image: url("/galleries/g2/Cycliste_Etienne.png");
   background-size: 50% auto;
 }
 
