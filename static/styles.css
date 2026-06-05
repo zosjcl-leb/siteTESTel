@@ -32,10 +32,25 @@ main>* {
   grid-template-columns: repeat(3, minmax(350px, 1fr));
   background-image: url("/img/cycliste_etienne_R2.png");
   background-size: 100% auto;
+  background-position: top center;
+  
 }
 
+/* Sur très grands écrans (TV) */
+@media (min-width: 1600px) {
+  .container {
+    background-size: cover;
+    background-position: top center;
+  }
+}
 
-
+/* Sur smartphone */
+@media (max-width: 600px) {
+  .container {
+    background-size: cover;
+    background-position: top center;
+  }
+}
 
 .container div {
   /*   background-color: #f1f1f1; */
